@@ -31,7 +31,6 @@ const Performance = () => {
     }
   };
 
-  // 测试git
 
   // 获取标签类
   const getTabClass = (tab: string) => {
