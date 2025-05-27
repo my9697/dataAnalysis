@@ -46,7 +46,7 @@ const LineChart: React.FC<LineChartProps> = ({
       },
     };
 
-    // 从extraOptions中提取tooltip并与默认tooltip合并
+    // 从extraOptions中提取tooltip并与默认tooltip合并·
     const { tooltip: extraTooltip, ...restExtraOptions } = extraOptions || {};
 
     // 配置图表选项
@@ -72,7 +72,7 @@ const LineChart: React.FC<LineChartProps> = ({
     // 设置图表选项
     chart.setOption(option);
 
-    // 立即执行一次resize以确保图表正确渲染
+    // 当图表所在容器大小发生变化时，重新调整图表大小
     chart.resize();
   };
 
@@ -90,7 +90,7 @@ const LineChart: React.FC<LineChartProps> = ({
     window.addEventListener('resize', handleResize);
 
     return () => {
-      // 清理
+      // 清理·
       clearTimeout(timer);
       if (chartInstance.current) {
         chartInstance.current.dispose();

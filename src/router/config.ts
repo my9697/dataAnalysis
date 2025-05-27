@@ -20,6 +20,10 @@ const routes = [
             Component: lazy(() => import('@/pages/Performance/pages/NetworkAnalysis')),
           },
           {
+            path: 'network/detail/:apiId',
+            Component: lazy(() => import('@/pages/Performance/pages/ApiDetail')),
+          },
+          {
             path: ROUTER_PATH.PERFORMANCE_RESOURCE,
             Component: lazy(() => import('@/pages/Performance/pages/ResourceAnalysis')),
           },

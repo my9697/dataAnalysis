@@ -3,113 +3,54 @@ import Card from '@/components/Card';
 import LineChart from '@/components/LineChart';
 import { CardProps } from '@/types';
 import { CHART_COLORS } from '@/common/constants';
+import type { PeriodType } from '@/pages/Performance/types';
+import { Segmented } from 'antd';
 
 const PerformanceOverview: React.FC = () => {
   // 趋势图时间周期
-  type PeriodType = 'week' | 'month' | 'year';
   const [period, setPeriod] = useState<PeriodType>('week');
 
   // 性能指标卡片数
   const performanceCards: CardProps[] = [
     {
-      title: (
-        <div className="flex items-center text-sm text-gray-500">
-          <span
-            className="inline-block mr-1 w-3 h-3 rounded-full"
-            style={{ backgroundColor: CHART_COLORS.FCP }}
-          ></span>
-          FCP (首次内容绘制)
-        </div>
-      ),
-      value: (
-        <div className="flex items-center">
-          <span className="text-2xl font-bold">1.2s</span>
-          <span className="ml-1 text-xs text-green-500">(良好)</span>
-        </div>
-      ),
-      description: (
-        <div className="flex items-center text-xs text-gray-500">
-          较昨日改善
-          <span className="inline-block ml-1 w-2 h-2 bg-green-500 rounded-full"></span>
-        </div>
-      ),
+      title: 'FCP (首次内容绘制)',
+      titleColor: CHART_COLORS.FCP,
+      value: '1.2s',
+      performanceStatus: 'poor',
+      description: '较昨日上升',
       changeRate: '8.5%',
       changeStatus: 'increase',
+      indicatorType: 'lower-better', // 耗时越低越好
     },
     {
-      title: (
-        <div className="flex items-center text-sm text-gray-500">
-          <span
-            className="inline-block mr-1 w-3 h-3 rounded-full"
-            style={{ backgroundColor: CHART_COLORS.LCP }}
-          ></span>
-          LCP (最大内容绘制)
-        </div>
-      ),
-      value: (
-        <div className="flex items-center">
-          <span className="text-2xl font-bold">2.4s</span>
-          <span className="ml-1 text-xs text-yellow-500">(一般)</span>
-        </div>
-      ),
-      description: (
-        <div className="flex items-center text-xs text-gray-500">
-          较昨日改善
-          <span className="inline-block ml-1 w-2 h-2 bg-yellow-500 rounded-full"></span>
-        </div>
-      ),
+      title: 'LCP (最大内容绘制)',
+      titleColor: CHART_COLORS.LCP,
+      value: '2.4s',
+      performanceStatus: 'normal',
+      description: '较昨日不变',
+      changeRate: '5.2%',
+      changeStatus: 'stable',
+      indicatorType: 'lower-better', // 耗时越低越好
+    },
+    {
+      title: 'TTI (可交互时间)',
+      titleColor: CHART_COLORS.TTI,
+      value: '2.4s',
+      performanceStatus: 'good',
+      description: '较昨日下降',
+      changeRate: '5.2%',
+      changeStatus: 'decrease',
+      indicatorType: 'lower-better', // 耗时越低越好
+    },
+    {
+      title: 'INP (交互响应延迟)',
+      titleColor: CHART_COLORS.INP,
+      value: '2.4s',
+      performanceStatus: 'good',
+      description: '较昨日下降',
       changeRate: '5.2%',
       changeStatus: 'increase',
-    },
-    {
-      title: (
-        <div className="flex items-center text-sm text-gray-500">
-          <span
-            className="inline-block mr-1 w-3 h-3 rounded-full"
-            style={{ backgroundColor: CHART_COLORS.TTI }}
-          ></span>
-          TTI (可交互时间)
-        </div>
-      ),
-      value: (
-        <div className="flex items-center">
-          <span className="text-2xl font-bold">3.8s</span>
-          <span className="ml-1 text-xs text-red-500">(较差)</span>
-        </div>
-      ),
-      description: (
-        <div className="flex items-center text-xs text-gray-500">
-          较昨日下降
-          <span className="inline-block ml-1 w-2 h-2 bg-red-500 rounded-full"></span>
-        </div>
-      ),
-      changeRate: '2.1%',
-      changeStatus: 'decrease',
-    },
-    {
-      title: (
-        <div className="flex items-center text-sm text-gray-500">
-          <span
-            className="inline-block mr-1 w-3 h-3 rounded-full"
-            style={{ backgroundColor: CHART_COLORS.INP }}
-          ></span>
-          INP (交互响应延迟)
-        </div>
-      ),
-      value: (
-        <div className="flex items-center">
-          <span className="text-2xl font-bold">200ms</span>
-          <span className="ml-1 text-xs text-green-500">(良好)</span>
-        </div>
-      ),
-      description: (
-        <div className="flex items-center text-xs text-gray-500">
-          较昨日改善
-          <span className="inline-block ml-1 w-2 h-2 bg-green-500 rounded-full"></span>
-        </div>
-      ),
-      changeRate: '12.5%',
-      changeStatus: 'increase',
+      indicatorType: 'lower-better', // 耗时越低越好
     },
   ];
 
@@ -185,15 +126,8 @@ const PerformanceOverview: React.FC = () => {
   }, [period]);
 
   // 处理周期变更
-  const handlePeriodChange = (newPeriod: PeriodType) => {
-    setPeriod(newPeriod);
-  };
-
-  // 获取样式类
-  const getPeriodButtonClass = (buttonPeriod: PeriodType) => {
-    return period === buttonPeriod
-      ? 'px-4 py-1 text-sm rounded bg-blue-600 text-white'
-      : 'px-4 py-1 text-sm rounded bg-gray-100 hover:bg-gray-200';
+  const handlePeriodChange = (value: string | number) => {
+    setPeriod(value as PeriodType);
   };
 
   return (
@@ -209,26 +143,15 @@ const PerformanceOverview: React.FC = () => {
       <div className="bg-white p-4 rounded shadow flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-medium">性能指标趋势</h2>
-          <div className="flex space-x-2">
-            <button
-              className={getPeriodButtonClass('week')}
-              onClick={() => handlePeriodChange('week')}
-            >
-              周
-            </button>
-            <button
-              className={getPeriodButtonClass('month')}
-              onClick={() => handlePeriodChange('month')}
-            >
-              月
-            </button>
-            <button
-              className={getPeriodButtonClass('year')}
-              onClick={() => handlePeriodChange('year')}
-            >
-              年
-            </button>
-          </div>
+          <Segmented
+            options={[
+              { label: '周', value: 'week' },
+              { label: '月', value: 'month' },
+              { label: '年', value: 'year' },
+            ]}
+            value={period}
+            onChange={handlePeriodChange}
+          />
         </div>
         <LineChart
           series={chartData}

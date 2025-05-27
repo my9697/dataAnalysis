@@ -31,7 +31,6 @@ const Performance = () => {
     }
   };
 
-
   // 获取标签类
   const getTabClass = (tab: string) => {
     const baseClass = 'px-3 py-2 cursor-pointer';

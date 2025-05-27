@@ -7,12 +7,40 @@ enum ROUTER_PATH {
   ERROR_ANALYSIS = '/errorAnalysis',
 }
 
-// 静态样式映射表
-const CHANGE_STYLES = {
-  increase: { color: 'text-green-500', arrow: '↑' },
-  decrease: { color: 'text-red-500', arrow: '↓' },
-  stable: { color: 'text-gray-500', arrow: '—' },
-};
+// 定义Card组件状态文本
+const STATUS_TEXT = {
+  good: '(良好)',
+  normal: '(一般)',
+  poor: '(较差)',
+} as const;
+
+// 定义Card组件状态背景颜色
+const STATUS_BG_COLOR = {
+  good: 'bg-green-500',
+  normal: 'bg-yellow-500',
+  poor: 'bg-red-500',
+} as const;
+
+// 定义Card组件状态文本颜色
+const STATUS_COLOR = {
+  good: 'text-green-500',
+  normal: 'text-yellow-500',
+  poor: 'text-red-500',
+} as const;
+
+// 定义Card组件状态箭头颜色
+const STATUS_ARROW_COLOR = {
+  increase: 'text-green-500',
+  decrease: 'text-red-500',
+  stable: 'text-yellow-500',
+} as const;
+
+// 定义Card组件状态箭头
+const STATUS_ARROW = {
+  increase: '↑',
+  decrease: '↓',
+  stable: '—',
+} as const;
 
 // 定义图表颜色常量
 const CHART_COLORS = {
@@ -22,4 +50,27 @@ const CHART_COLORS = {
   INP: '#EE6666', // 红色
 };
 
-export { ROUTER_PATH, CHANGE_STYLES, CHART_COLORS };
+const API_CATEGORY = [
+  { label: '全部接口', value: -1 },
+  { label: '用户接口', value: 1 },
+  { label: '商品接口', value: 2 },
+  { label: '订单接口', value: 3 },
+];
+
+const STATUS_FILTER = [
+  { label: '全部', value: -1 },
+  { label: '正常', value: 1 },
+  { label: '告警', value: 2 },
+];
+
+export {
+  ROUTER_PATH,
+  CHART_COLORS,
+  STATUS_COLOR,
+  STATUS_BG_COLOR,
+  STATUS_TEXT,
+  STATUS_ARROW,
+  STATUS_ARROW_COLOR,
+  API_CATEGORY,
+  STATUS_FILTER,
+};

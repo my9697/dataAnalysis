@@ -1,16 +1,23 @@
 import { ReactNode } from 'react';
 
+// 卡片组件类型
 interface CardProps {
   /** 卡片标题 */
-  title?: ReactNode;
+  title: ReactNode;
   /** 主要数据值 */
-  value?: ReactNode;
+  value: ReactNode;
   /** 描述文本 */
-  description?: ReactNode;
+  description: ReactNode;
   /** 变化率数值 */
-  changeRate?: string | number;
+  changeRate: string | number;
   /** 变化状态：上升、下降或持平 */
-  changeStatus?: 'increase' | 'decrease' | 'stable';
+  changeStatus: 'increase' | 'decrease' | 'stable';
+  /** 指标类型：高值更好(higher-better)或低值更好(lower-better) */
+  indicatorType?: 'higher-better' | 'lower-better';
+  /** 标题旁边的颜色，用于与图表颜色对应 */
+  titleColor?: string;
+  /** 性能状态评价：良好、一般、较差 */
+  performanceStatus: 'good' | 'normal' | 'poor';
   /** 自定义类名 */
   className?: string;
 }
