@@ -1,29 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { ROUTER_PATH } from '@/common/constants';
 
-const Behavior = () => {
+const ErrorMonitor = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(() => {
     // 根据当前路径确定活动标签
     const path = location.pathname;
-    if (path.includes('device-params')) return 'device-params';
-    return 'visit-stats';
+    if (path.includes('error-list')) return 'error-list';
+    return 'overview';
   });
+
+  // 处理默认路由重定向
+  useEffect(() => {
+    if (location.pathname === ROUTER_PATH.ERROR_ANALYSIS) {
+      navigate(ROUTER_PATH.ERROR_OVERVIEW, { replace: true });
+    }
+  }, [location.pathname, navigate]);
 
   // 处理标签点击
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
     switch (tab) {
-      case 'visit-stats':
-        navigate(ROUTER_PATH.BEHAVIOR_VISIT_STATS);
+      case 'overview':
+        navigate(ROUTER_PATH.ERROR_OVERVIEW);
         break;
-      case 'device-params':
-        navigate(ROUTER_PATH.BEHAVIOR_DEVICE_PARAMS);
+      case 'error-list':
+        navigate(ROUTER_PATH.ERROR_LIST);
         break;
       default:
-        navigate(ROUTER_PATH.BEHAVIOR_VISIT_STATS);
+        navigate(ROUTER_PATH.ERROR_OVERVIEW);
     }
   };
 
@@ -39,14 +46,11 @@ const Behavior = () => {
     <div className="h-full flex flex-col">
       {/* 选项卡导航 */}
       <div className="flex border-b">
-        <div className={getTabClass('visit-stats')} onClick={() => handleTabClick('visit-stats')}>
-          访问统计
+        <div className={getTabClass('overview')} onClick={() => handleTabClick('overview')}>
+          异常概览
         </div>
-        <div
-          className={getTabClass('device-params')}
-          onClick={() => handleTabClick('device-params')}
-        >
-          设备参数
+        <div className={getTabClass('error-list')} onClick={() => handleTabClick('error-list')}>
+          错误列表
         </div>
       </div>
 
@@ -56,4 +60,4 @@ const Behavior = () => {
   );
 };
 
-export default Behavior;
+export default ErrorMonitor;

@@ -17,4 +17,25 @@ interface FormValues {
   apiCategory?: string;
 }
 
-export type { PeriodType, ApiRequestData, FormValues };
+interface ApiDetailInfo {
+  path: string;
+  method: string;
+  avgResponseTime: string;
+  successRate: string;
+  totalCalls: number;
+  status: 'normal' | 'warning' | 'error';
+  responseTimeChange: {
+    value: string;
+    trend: 'increase' | 'decrease' | 'stable';
+  };
+  successRateChange: {
+    value: string;
+    trend: 'increase' | 'decrease' | 'stable';
+  };
+  totalCallsChange: {
+    value: string;
+    trend: 'increase' | 'decrease' | 'stable';
+  };
+}
+
+export type { PeriodType, ApiRequestData, FormValues, ApiDetailInfo };

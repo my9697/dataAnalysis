@@ -4,7 +4,11 @@ enum ROUTER_PATH {
   PERFORMANCE_NETWORK = '/performance/network',
   PERFORMANCE_RESOURCE = '/performance/resource',
   BEHAVIOR = '/behavior',
+  BEHAVIOR_VISIT_STATS = '/behavior/visit-stats',
+  BEHAVIOR_DEVICE_PARAMS = '/behavior/device-params',
   ERROR_ANALYSIS = '/errorAnalysis',
+  ERROR_OVERVIEW = '/errorAnalysis/overview',
+  ERROR_LIST = '/errorAnalysis/error-list',
 }
 
 // 定义Card组件状态文本
@@ -63,6 +67,17 @@ const STATUS_FILTER = [
   { label: '告警', value: 2 },
 ];
 
+// HTTP方法颜色配置
+const HTTP_METHOD_CONFIG = {
+  GET: { color: 'blue', text: 'GET' },
+  POST: { color: 'green', text: 'POST' },
+  PUT: { color: 'orange', text: 'PUT' },
+  DELETE: { color: 'red', text: 'DELETE' },
+  PATCH: { color: 'purple', text: 'PATCH' },
+  HEAD: { color: 'cyan', text: 'HEAD' },
+  OPTIONS: { color: 'geekblue', text: 'OPTIONS' },
+} as const;
+
 export {
   ROUTER_PATH,
   CHART_COLORS,
@@ -73,4 +88,5 @@ export {
   STATUS_ARROW_COLOR,
   API_CATEGORY,
   STATUS_FILTER,
+  HTTP_METHOD_CONFIG,
 };

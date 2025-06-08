@@ -181,7 +181,7 @@ const NetworkAnalysis: React.FC = () => {
 
   // 跳转到API详情页面
   const handleViewDetail = (record: ApiRequestData) => {
-    navigate(`/performance/network/detail/${record.id || '123456'}`);
+    navigate(`/network/detail`);
   };
 
   const columns = [

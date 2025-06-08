@@ -1,0 +1,24 @@
+/* 自定义滚动条样式 */
+.customScrollbar :global(.ant-table-body) {
+  scrollbar-width: thin;
+  scrollbar-color: #eaeaea transparent;
+  scrollbar-gutter: stable;
+}
+
+.customScrollbar :global(.ant-table-body::-webkit-scrollbar) {
+  width: 6px;
+  height: 6px;
+}
+
+.customScrollbar :global(.ant-table-body::-webkit-scrollbar-track) {
+  background: transparent;
+}
+
+.customScrollbar :global(.ant-table-body::-webkit-scrollbar-thumb) {
+  background: #eaeaea;
+  border-radius: 3px;
+}
+
+.customScrollbar :global(.ant-table-body::-webkit-scrollbar-thumb:hover) {
+  background: #d0d0d0;
+}
