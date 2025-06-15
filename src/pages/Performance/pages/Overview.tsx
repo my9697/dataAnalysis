@@ -1,12 +1,20 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Card from '@/components/Card';
 import LineChart from '@/components/LineChart';
 import { CardProps } from '@/types';
 import { CHART_COLORS } from '@/common/constants';
 import type { PeriodType } from '@/pages/Performance/types';
-import { Segmented } from 'antd';
+import { get } from '@/api/request';
+import { performanceUrls } from '@/urls';
+import { Segmented, Row, Col, Statistic, Spin, Result, Button } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined, MinusOutlined } from '@ant-design/icons';
+import { PerformanceMetrics, TrendType } from '../types';
 
 const PerformanceOverview: React.FC = () => {
+  const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   // 趋势图时间周期
   const [period, setPeriod] = useState<PeriodType>('week');
 
@@ -129,6 +137,26 @@ const PerformanceOverview: React.FC = () => {
   const handlePeriodChange = (value: string | number) => {
     setPeriod(value as PeriodType);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await get(performanceUrls.metricsCards, {
+          appId: 'chatTestApp', // 这里需要根据实际情况传入appId
+        });
+        setMetrics(response.data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : '获取数据失败');
+        console.error('Failed to fetch performance metrics:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col flex-1 p-4">

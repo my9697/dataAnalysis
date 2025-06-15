@@ -5,7 +5,7 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'http://localhost:3000';
 
 // 创建 Axios 实例
 const service: AxiosInstance = axios.create({
@@ -88,5 +88,3 @@ export const del = <T = any>(url: string, data?: object, options?: RequestOption
   console.log('del请求', url, data, options);
   return request<T>({ url, method: 'DELETE', data }, options);
 };
-
-export default request;

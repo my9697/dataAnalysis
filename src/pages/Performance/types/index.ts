@@ -38,4 +38,43 @@ interface ApiDetailInfo {
   };
 }
 
+export type TrendType = 'up' | 'down' | 'unchanged';
+export type ChangeStatus = 'increase' | 'decrease' | 'stable';
+export type PerformanceStatus = 'good' | 'normal' | 'poor';
+
+export interface MetricsData {
+  fcp: number;
+  lcp: number;
+  inp: number | null;
+  ttfb: number;
+}
+
+export interface PerformanceMetrics {
+  today: MetricsData;
+  yesterday: MetricsData;
+  diff: MetricsData;
+  trend: {
+    fcp: TrendType;
+    lcp: TrendType;
+    inp: TrendType;
+    ttfb: TrendType;
+  };
+}
+
+export interface CardProps {
+  title: string;
+  titleColor?: string;
+  metricKey: 'fcp' | 'lcp' | 'inp' | 'ttfb';
+  description: string;
+  unit: string;
+  value: number;
+  performanceStatus: PerformanceStatus;
+  changeRate: string;
+  changeStatus: ChangeStatus;
+  indicatorType: 'lower-better' | 'higher-better';
+}
+
+// 性能指标类型
+export type MetricType = 'fcp' | 'lcp' | 'inp' | 'ttfb';
+
 export type { PeriodType, ApiRequestData, FormValues, ApiDetailInfo };
