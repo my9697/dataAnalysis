@@ -171,7 +171,7 @@ const VisitStats: React.FC = () => {
   const sourceXAxisData = sourceChartData.map((item) => item.source);
 
   return (
-    <div className="px-3 pt-2 bg-gray-50">
+    <div className="px-3 pt-2 ">
       {/* 统计卡片 */}
       <Row gutter={16}>
         {visitCards.map((card, index) => (

@@ -13,7 +13,7 @@ const MainLayout: React.FC = () => {
       <Layout className="flex-1">
         <Sidebar />
         <Layout className="p-2 bg-gray-50 ">
-          <Content className="bg-white p-3 rounded-xl h-full">
+          <Content className="bg-white p-3 rounded-xl h-full overflow-y-scroll">
             <Outlet />
           </Content>
         </Layout>

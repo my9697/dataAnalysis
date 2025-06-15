@@ -68,10 +68,8 @@ const ErrorList: React.FC = () => {
     at React.Component.render
     at React.createElement`,
       deviceInfo: {
-        deviceType: 'Desktop',
         browser: 'Chrome 96.0.4664.110',
         os: 'Windows 11',
-        location: '中国 北京',
       },
       requestInfo: {
         url: '/api/user/dashboard/data',
@@ -108,255 +106,6 @@ const ErrorList: React.FC = () => {
           type: 'api_error',
         },
       ],
-    },
-    {
-      key: '2',
-      type: 'SyntaxError',
-      message: 'Unexpected token <...',
-      path: '/api/products/list',
-      count: 86,
-      affectedUsers: 32,
-      lastOccur: '6小时前',
-      status: 'unresolved',
-      timestamp: '2025-05-10 13:15:42',
-      stackTrace: `SyntaxError: Unexpected token < in JSON at position 0
-    at JSON.parse (<anonymous>)
-    at ProductService.getList (/src/services/product.ts:45)
-    at ProductList.componentDidMount`,
-      deviceInfo: {
-        deviceType: 'Mobile',
-        browser: 'Safari 15.2',
-        os: 'iOS 15.2',
-        location: '中国 上海',
-      },
-      requestInfo: {
-        url: '/api/products/list',
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        payload: { page: 1, limit: 20 },
-      },
-      userBehaviorTrace: [
-        {
-          id: 1,
-          action: '页面加载',
-          path: '/api/products/list',
-          description: '用户访问产品列表页面',
-          timestamp: '2025-05-10 13:15:30',
-          type: 'page_view',
-        },
-        {
-          id: 2,
-          action: '搜索操作',
-          path: '/api/products/list',
-          description: '用户搜索产品关键词',
-          timestamp: '2025-05-10 13:15:40',
-          type: 'search',
-        },
-        {
-          id: 3,
-          action: '接口调用',
-          path: '/api/products/list',
-          description: '获取产品列表数据失败',
-          timestamp: '2025-05-10 13:15:42',
-          type: 'api_error',
-        },
-      ],
-    },
-    {
-      key: '3',
-      type: 'ReferenceError',
-      message: 'productData is not defined',
-      path: '/products/detail',
-      count: 64,
-      affectedUsers: 28,
-      lastOccur: '8小时前',
-      status: 'resolved',
-      timestamp: '2025-05-10 12:45:18',
-      stackTrace: `ReferenceError: productData is not defined
-    at ProductDetail.render (/src/components/ProductDetail.tsx:89)
-    at ProductDetail.componentDidMount
-    at callCallback`,
-      deviceInfo: {
-        deviceType: 'Desktop',
-        browser: 'Firefox 98.0',
-        os: 'macOS 12.3',
-        location: '中国 广州',
-      },
-      requestInfo: {
-        url: '/api/products/123',
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'User-Agent': 'Mozilla/5.0',
-        },
-        payload: { id: 123 },
-      },
-      userBehaviorTrace: [
-        {
-          id: 1,
-          action: '页面加载',
-          path: '/products/detail',
-          description: '用户访问产品详情页面',
-          timestamp: '2025-05-10 12:45:10',
-          type: 'page_view',
-        },
-        {
-          id: 2,
-          action: '数据获取',
-          path: '/products/detail',
-          description: '获取产品详细信息',
-          timestamp: '2025-05-10 12:45:15',
-          type: 'api_call',
-        },
-        {
-          id: 3,
-          action: '渲染错误',
-          path: '/products/detail',
-          description: '组件渲染时引用未定义变量',
-          timestamp: '2025-05-10 12:45:18',
-          type: 'render_error',
-        },
-      ],
-    },
-    {
-      key: '4',
-      type: 'NetworkError',
-      message: 'Failed to fetch',
-      path: '/api/checkout/payment',
-      count: 42,
-      affectedUsers: 18,
-      lastOccur: '9小时前',
-      status: 'unresolved',
-      timestamp: '2025-05-10 11:20:35',
-      stackTrace: `NetworkError: Failed to fetch
-    at fetch (native)
-    at PaymentService.processPayment (/src/services/payment.ts:156)
-    at CheckoutPage.handlePayment`,
-      deviceInfo: {
-        deviceType: 'Mobile',
-        browser: 'Chrome 96.0.4664.45',
-        os: 'Android 12',
-        location: '中国 深圳',
-      },
-      requestInfo: {
-        url: '/api/checkout/payment',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ****',
-        },
-        payload: {
-          amount: 299.99,
-          paymentMethod: 'credit_card',
-        },
-      },
-      userBehaviorTrace: [
-        {
-          id: 1,
-          action: '页面加载',
-          path: '/checkout',
-          description: '用户进入结算页面',
-          timestamp: '2025-05-10 11:20:10',
-          type: 'page_view',
-        },
-        {
-          id: 2,
-          action: '填写信息',
-          path: '/checkout',
-          description: '用户填写支付信息',
-          timestamp: '2025-05-10 11:20:25',
-          type: 'form_fill',
-        },
-        {
-          id: 3,
-          action: '提交支付',
-          path: '/checkout',
-          description: '点击提交支付按钮',
-          timestamp: '2025-05-10 11:20:30',
-          type: 'click',
-        },
-        {
-          id: 4,
-          action: '支付失败',
-          path: '/api/checkout/payment',
-          description: '支付接口调用失败',
-          timestamp: '2025-05-10 11:20:35',
-          type: 'api_error',
-        },
-      ],
-    },
-    {
-      key: '5',
-      type: 'RangeError',
-      message: 'Maximum call stack...',
-      path: '/cart',
-      count: 35,
-      affectedUsers: 15,
-      lastOccur: '8小时前',
-      status: 'unresolved',
-    },
-    {
-      key: '6',
-      type: 'URIError',
-      message: 'URI malformed',
-      path: '/search',
-      count: 28,
-      affectedUsers: 12,
-      lastOccur: '10小时前',
-      status: 'resolved',
-    },
-    {
-      key: '7',
-      type: 'TypeError',
-      message: 'Cannot read property...',
-      path: '/user/profile',
-      count: 24,
-      affectedUsers: 10,
-      lastOccur: '7小时前',
-      status: 'unresolved',
-    },
-    {
-      key: '8',
-      type: 'SyntaxError',
-      message: 'Unexpected end of JSON...',
-      path: '/api/user/preferences',
-      count: 18,
-      affectedUsers: 8,
-      lastOccur: '12小时前',
-      status: 'resolved',
-    },
-    {
-      key: '6',
-      type: 'URIError',
-      message: 'URI malformed',
-      path: '/search',
-      count: 28,
-      affectedUsers: 12,
-      lastOccur: '10小时前',
-      status: 'resolved',
-    },
-    {
-      key: '7',
-      type: 'TypeError',
-      message: 'Cannot read property...',
-      path: '/user/profile',
-      count: 24,
-      affectedUsers: 10,
-      lastOccur: '7小时前',
-      status: 'unresolved',
-    },
-    {
-      key: '8',
-      type: 'SyntaxError',
-      message: 'Unexpected end of JSON...',
-      path: '/api/user/preferences',
-      count: 18,
-      affectedUsers: 8,
-      lastOccur: '12小时前',
-      status: 'resolved',
     },
   ];
 
@@ -585,20 +334,12 @@ const ErrorList: React.FC = () => {
               <Panel header="设备信息" key="device">
                 <Row gutter={16}>
                   <Col span={12}>
-                    <Text strong>设备类型：</Text>
-                    <Text>{selectedError.deviceInfo?.deviceType}</Text>
-                  </Col>
-                  <Col span={12}>
                     <Text strong>浏览器：</Text>
                     <Text>{selectedError.deviceInfo?.browser}</Text>
                   </Col>
                   <Col span={12} className="mt-2">
                     <Text strong>操作系统：</Text>
                     <Text>{selectedError.deviceInfo?.os}</Text>
-                  </Col>
-                  <Col span={12} className="mt-2">
-                    <Text strong>地理位置：</Text>
-                    <Text>{selectedError.deviceInfo?.location}</Text>
                   </Col>
                 </Row>
               </Panel>
@@ -629,33 +370,49 @@ const ErrorList: React.FC = () => {
               </Panel>
 
               <Panel header="用户行为轨迹" key="userTrace">
-                <div className="space-y-3">
-                  {selectedError.userBehaviorTrace?.map((trace: any) => (
-                    <div key={trace.id} className="flex items-start space-x-3">
+                <div className="relative space-y-0">
+                  {selectedError.userBehaviorTrace?.map((trace: any, index: number) => (
+                    <div
+                      key={trace.id}
+                      className="flex items-start relative"
+                      style={{ minHeight: '80px' }}
+                    >
                       <div
-                        className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
-                          trace.type === 'page_view'
-                            ? 'bg-blue-500'
-                            : trace.type === 'click'
-                            ? 'bg-green-500'
-                            : trace.type === 'search'
-                            ? 'bg-yellow-500'
-                            : trace.type === 'api_error'
-                            ? 'bg-red-500'
-                            : 'bg-gray-500'
-                        }`}
-                      ></div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
+                        className="relative flex items-start"
+                        style={{ width: '24px', marginRight: '12px' }}
+                      >
+                        {/* 连接线 */}
+                        {index !== selectedError.userBehaviorTrace.length - 1 && (
+                          <div
+                            className="absolute w-0.5 bg-gray-200"
+                            style={{
+                              left: '5px',
+                              top: '15px',
+                              height: '80px',
+                            }}
+                          />
+                        )}
+                        {/* 圆点 */}
+                        <div
+                          className={`w-3 h-3 rounded-full z-10 relative ${
+                            trace.type === 'api_error' ? 'bg-red-500' : 'bg-blue-500'
+                          }`}
+                          style={{
+                            marginTop: '6px',
+                          }}
+                        />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        <div className="text-sm">
                           <Text strong>{trace.action}</Text>
-                          <Text className="text-gray-500 text-sm">{trace.timestamp}</Text>
+                          <div className="mt-1">
+                            <Text code className="text-xs text-gray-600">
+                              {trace.path}
+                            </Text>
+                          </div>
+                          <div className="text-gray-400 text-xs mt-1">{trace.description}</div>
+                          <div className="text-gray-400 text-xs mt-1">{trace.timestamp}</div>
                         </div>
-                        <div className="text-gray-600 text-sm mt-1">
-                          <Text code className="text-sm">
-                            {trace.path}
-                          </Text>
-                        </div>
-                        <div className="text-gray-700 mt-1">{trace.description}</div>
                       </div>
                     </div>
                   ))}
